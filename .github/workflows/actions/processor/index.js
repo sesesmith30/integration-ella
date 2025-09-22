@@ -53,7 +53,7 @@ async function run() {
             stats: data.stats
         };
         //create the batch
-        await connection.execute("INSERT INTO playwright_batches(hash,stats) VALUES(?, ?)", [process.env.GITHUB_RUN_ID, JSON.stringify(meta)]);
+        await connection.execute("INSERT INTO playwright_batches(hash, meta) VALUES(?, ?)", [process.env.GITHUB_RUN_ID, JSON.stringify(meta)]);
 
         for (const r of parsed) {
             await connection.execute(
